@@ -29,7 +29,7 @@ int main()
 		if(dmt[i].yy==dmt[i+1].yy&&dmt[i].mm==dmt[i+1].mm&&dmt[i].dd==dmt[i+1].dd)
 		{
 			printf("\nAll dates are same!!");
-			m=m+1;
+			return 0;
 		}
 		if(m==n-1)
 		{

@@ -9,6 +9,7 @@ int main()
 	{
 		putc(ch,fp);
 	}
+	fclose(fp);
 	printf("\nOUTPUT:");
 	fp = fopen("nilesh.txt","r");
 	while((ch=getc(fp))!=EOF)

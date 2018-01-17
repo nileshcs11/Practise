@@ -6,6 +6,7 @@ int main()
 	int dd1,mm1,yy1,dd2,mm2,yy2,day1,day2,ref,i;
 	printf("\nEnter the first date(DD/MM/YYY format):");
 	scanf("%d%d%d",&dd1,&mm1,&yy1);
+	printf("\nEnter the second date:");
 	scanf("%d%d%d",&dd2,&mm2,&yy2);
 	ref=yy1;
 	if(yy2<yy1)
@@ -26,7 +27,7 @@ int main()
 			day2=day2+1;
 	}
 	day2=day2+dd2+(yy2-ref)*365;
-	printf("\nDifference between two dates= %d days",abs(day2-day1));
+	printf("\nDifference between two dates= %d days\n",abs(day2-day1));
 	return 0;
 }
 int dater(int x)
@@ -60,6 +61,5 @@ int dater(int x)
 			break;
 		default:printf("\nInvalid Input!!\n");
 	}
+	return(y);
 }
-
-			

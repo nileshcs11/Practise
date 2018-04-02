@@ -47,8 +47,8 @@ int main()
                         case 8:
                                         search();
                                         break;
-                        case 9:			exit(0);
-										break;              
+                        case 9:		exit(0);
+					break;              
                         default:
                                         printf("\n Wrong choice:\n");
                                         break;

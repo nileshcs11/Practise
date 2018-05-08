@@ -1,7 +1,14 @@
 #include<stdio.h>
+
+void swap(int *a, int *b){
+    int c = *a;
+    *a = *b;
+    *b = c;
+}
+
 int partition(int a[],int p,int r)
 {
-	int i,j,k,temp;
+	int i,j,k;
 	k=a[r];
 	i=p-1;
 	for(j=p;j<r;j++)
@@ -9,24 +16,40 @@ int partition(int a[],int p,int r)
 		if(a[j]<=k)
 		{
 			i=i+1;
-			temp=a[i];
-			a[i]=a[j];
-			a[j]=temp;
+			swap(&a[i], &a[j]);
 		}
 	}
-	temp=a[i+1];
-	a[i+1]=a[r];
-	a[r]=temp;
+	swap(&a[r], &a[i+1]);
 	return (i+1);
 }
-void quicksort(int a[],int p,int r)
+
+int hoares_parition(int a[], int p, int r){
+    int i = p;
+    int j = r + 1;
+    do{
+        do{
+            i++;
+        } while(a[i] < a[p] && i < r);
+        do{
+            j--;
+        } while(a[j] > a[p]);
+        if(i < j)
+            swap(&a[i], &a[j]);
+    } while(i < j);
+    swap(&a[p], &a[j]);
+    return j;
+}
+
+typedef int(*part)(int[], int, int);
+
+void quicksort(int a[],int p,int r, part prt)
 {
 	int q;
 	if(p<r)
 	{
-		q=partition(a,p,r);
-		quicksort(a,p,q-1);
-		quicksort(a,q+1,r);
+		q=prt(a,p,r);
+		quicksort(a,p,q-1, prt);
+		quicksort(a,q+1,r, prt);
 	}
 }
 
@@ -42,7 +65,16 @@ int main()
 	}
 	p=1;
 	r=n;
-	quicksort(a,p,r);
+
+	part prt = partition;
+	printf("\nPress y to use Hoare's partition method : ");
+	char ch;
+	scanf(" %c", &ch);
+	if(ch == 'y' || ch == 'Y')
+	    prt = hoares_parition;
+
+	quicksort(a,p,r,prt);
+	
 	printf("\nAfter Sorting:");
 	for(i=1;i<=n;i++)
 	{
